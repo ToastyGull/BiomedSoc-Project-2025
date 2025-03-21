@@ -1,0 +1,5 @@
+{
+    "idf.pythonInstallPath": "/usr/bin/python3",
+    "idf.espIdfPath": "/Users/gulliverwright/esp/v5.4/esp-idf",
+    "idf.toolsPath": "/Users/gulliverwright/.espressif"
+}

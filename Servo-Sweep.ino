@@ -8,6 +8,7 @@ bool toggle = 0;  // declare toggle as a global variable
 void setup() {
   Serial.begin(9600);
   myServo.attach(6);  // attaches the servo on pin 6 to the servo object
+  myServo.write(0);
 }
 
 void loop() {
@@ -18,7 +19,7 @@ void loop() {
 }
 
 void consoleinput() {
-  println("Enter 1 to sweep the servo");
+  Serial.println("Enter 1 to sweep the servo");
   if (Serial.available() > 0) {
     // read the incoming byte:
     toggle = Serial.read();
@@ -28,21 +29,22 @@ void consoleinput() {
   }
 }
 
-void Sweep(bool toggle) {
+bool Sweep(bool toggle) {
   if (toggle == 1) {
     // Sweep from 0 to 180 degrees
     for (int angle = 0; angle <= 180; angle++) {
       myServo.write(angle);
-      delay(15);  // Small delay for smooth movement
+      delay(5);  // Small delay for smooth movement
     }
     
     // Sweep back from 180 to 0 degrees
     for (int angle = 180; angle >= 0; angle--) {
       myServo.write(angle);
-      delay(15);
+      delay(5);
     }
     toggle = 0;
-    println("Servo sweep complete");
-    println("toggle reset to 0");
+    Serial.println("Servo sweep complete");
+    Serial.println("toggle reset to 0");
+    return toggle;
   }
 }
